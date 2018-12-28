@@ -1,0 +1,10 @@
+afarmk.toggles=Movement Toggles
+
+toggle.shift=Toggle Shift
+toggle.leftClick=Toggle LeftClick
+toggle.rightClick=Toggle RightClick
+toggle.forward=Toggle Forward
+toggle.backwards=Toggle Backwards
+toggle.left=Toggle Left
+toggle.right=Toggle Right
+toggle.jump=Toggle Jump

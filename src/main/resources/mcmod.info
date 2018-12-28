@@ -1,0 +1,16 @@
+[
+{
+  "modid": "afarmk",
+  "name": "AFarmK",
+  "description": "I'm just tired of holding shift + left mouse button.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Sqbika"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
