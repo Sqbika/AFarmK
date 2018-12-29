@@ -28,9 +28,6 @@ public class Keybindings {
         for (KeyBinding key : keys) {
             ClientRegistry.registerKeyBinding(key);
         }
-        LogHelper.info("Loaded keybinds.");
-        LogHelper.info(I18n.format("toggle.jump"));
-        LogHelper.info(Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode());
     }
 
     private static KeyBinding createKeyBind(String name, int keybind) {
