@@ -8,3 +8,4 @@ toggle.backwards=Toggle Backwards
 toggle.left=Toggle Left
 toggle.right=Toggle Right
 toggle.jump=Toggle Jump
+toggle.reset=Reset Toggles

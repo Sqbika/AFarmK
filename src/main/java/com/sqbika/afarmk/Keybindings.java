@@ -23,7 +23,8 @@ public class Keybindings {
                 createKeyBind("toggle.backwards", Keyboard.KEY_NUMPAD5),
                 createKeyBind("toggle.left", Keyboard.KEY_NUMPAD4),
                 createKeyBind("toggle.right", Keyboard.KEY_NUMPAD6),
-                createKeyBind("toggle.jump", Keyboard.KEY_NUMPAD0)
+                createKeyBind("toggle.jump", Keyboard.KEY_NUMPAD0),
+                createKeyBind("toggle.reset", Keyboard.KEY_NUMPADENTER)
        };
         for (KeyBinding key : keys) {
             ClientRegistry.registerKeyBinding(key);

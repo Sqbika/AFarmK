@@ -24,6 +24,9 @@ public class KeyEventHandler {
             KeyBinding bind = getKeybindFromDesc(key.getKeyDescription(), settings);
             if (!isNull(bind))
                 KeyBinding.setKeyBindState(bind.getKeyCode(), !bind.isKeyDown());
+            else {
+                specialCases(key.getKeyDescription(), settings);
+            }
         }
     }
 
@@ -38,6 +41,18 @@ public class KeyEventHandler {
             case "toggle.right": return sett.keyBindRight;
             case "toggle.jump": return sett.keyBindJump;
             default: return null;
+        }
+    }
+
+    private void specialCases(String desc, GameSettings sett) {
+        switch(desc) {
+            case "toggle.reset":
+                for (KeyBinding key : Keybindings.keys) {
+                    KeyBinding bind = getKeybindFromDesc(key.getKeyDescription(), sett);
+                    if (!isNull(bind))
+                        KeyBinding.setKeyBindState(bind.getKeyCode(), false);
+                }
+                break;
         }
     }
 }
