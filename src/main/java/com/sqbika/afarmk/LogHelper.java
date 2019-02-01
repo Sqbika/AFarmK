@@ -11,11 +11,16 @@ public class LogHelper {
         logger.log(level, String.format(format, data));
     }
 
-    public static void warn(String stuff, Object... data) {
-        log(Level.WARN, stuff, data);
+    public static void warn(Object stuff, Object... data) {
+        log(Level.WARN, ""+stuff, data);
     }
 
-    public static void info(String stuff, Object... data) {
-        log(Level.INFO, stuff, data);
+    public static void info(Object stuff, Object... data) {
+        log(Level.INFO, ""+stuff, data);
+    }
+
+    public static void chat(Object stuff) {
+        //No chat flood for live
+        //Minecraft.getMinecraft().player.sendChatMessage("[AFarmK] - " + stuff);
     }
 }

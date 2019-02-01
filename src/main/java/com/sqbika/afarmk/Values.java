@@ -1,6 +1,5 @@
 package com.sqbika.afarmk;
 
-import ca.weblite.objc.Client;
 
 public class Values {
     public static final String ModID = "afarmk";

@@ -1,5 +1,6 @@
 package com.sqbika.afarmk;
 
+import com.sqbika.afarmk.Togglers.AFarmKConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
@@ -8,9 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
-import java.awt.event.KeyEvent;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
@@ -18,19 +17,26 @@ public class KeyEventHandler {
 
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        KeyBinding key = Keybindings.find(Keyboard.getEventKey());
-        if (!isNull(key) && key.isKeyDown()) {
-            GameSettings settings = FMLClientHandler.instance().getClient().gameSettings;
-            KeyBinding bind = getKeybindFromDesc(key.getKeyDescription(), settings);
-            if (!isNull(bind))
-                KeyBinding.setKeyBindState(bind.getKeyCode(), !bind.isKeyDown());
-            else {
-                specialCases(key.getKeyDescription(), settings);
+        if (!Minecraft.getMinecraft().inGameHasFocus) return;
+        GameSettings settings = FMLClientHandler.instance().getClient().gameSettings;
+        if (!Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+            KeyBinding key = Keybindings.find(Keyboard.getEventKey());
+            if (!isNull(key) && key.isKeyDown()) {
+                KeyBinding bind = getKeybindFromDesc(key.getKeyDescription(), settings);
+                if (!isNull(bind)) {
+                    KeyBinding.setKeyBindState(bind.getKeyCode(), !bind.isKeyDown());
+                } else {
+                    specialCases(key.getKeyDescription(), settings);
+                }
             }
+        } else {
+            KeyBinding key = Keybindings.findSpecial(Keyboard.getEventKey());
+            if (!isNull(key) && key.isKeyDown())
+                specialCases(key.getKeyDescription(), settings);
         }
     }
 
-    private KeyBinding getKeybindFromDesc(String desc, GameSettings sett) {
+    private static KeyBinding getKeybindFromDesc(String desc, GameSettings sett) {
         switch (desc) {
             case "toggle.shift": return sett.keyBindSneak;
             case "toggle.leftClick": return sett.keyBindAttack;
@@ -44,7 +50,23 @@ public class KeyEventHandler {
         }
     }
 
+    public static String getTogglerString(GameSettings sett) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < Keybindings.keys.length; i++) {
+            KeyBinding asd = getKeybindFromDesc(Keybindings.keys[i].getKeyDescription(), sett);
+            if (asd.isKeyDown() && !asd.isPressed()) {
+                builder.append(" ");
+                builder.append(i+1);
+            }
+        }
+        return builder.toString();
+    }
+
     private void specialCases(String desc, GameSettings sett) {
+        if (desc.startsWith("toggle.profile")) {
+            profileCases(desc, sett);
+            return;
+        }
         switch(desc) {
             case "toggle.reset":
                 for (KeyBinding key : Keybindings.keys) {
@@ -54,5 +76,20 @@ public class KeyEventHandler {
                 }
                 break;
         }
+    }
+
+    private void profileCases(String desc, GameSettings sett) {
+        int profile_id = Integer.parseInt(desc.replace("toggle.profile", ""));
+        AFarmKConfig.TogglerProfile profile = AFarmKConfig.get(profile_id);
+        BitSet set = profile.getProfileState();
+        LogHelper.chat(set.toString());
+        for (int i = 0; i < set.length(); i++) {
+            if (set.get(i)) {
+                KeyBinding key = getKeybindFromDesc(Keybindings.keys[i].getKeyDescription(), sett);
+                if (!isNull(key))
+                    KeyBinding.setKeyBindState(key.getKeyCode(), !profile.on);
+            }
+        }
+        profile.on = !profile.on;
     }
 }
