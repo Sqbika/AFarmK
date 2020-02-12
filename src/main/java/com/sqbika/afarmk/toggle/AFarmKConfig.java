@@ -1,6 +1,6 @@
-package com.sqbika.afarmk.Togglers;
+package com.sqbika.afarmk.toggle;
 
-import com.sqbika.afarmk.Values;
+import com.sqbika.afarmk.common.Constants;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.BitSet;
 
-@Config(modid = Values.ModID)
+@Config(modid = Constants.MOD_ID)
 public class AFarmKConfig {
 
     public static TogglerProfile profile1 = new TogglerProfile();
@@ -56,8 +56,6 @@ public class AFarmKConfig {
         return builder.toString();
     }
 
-
-
     public static class TogglerProfile {
         public boolean toggleShift = false;
         public boolean toggleLeftClick = false;
@@ -102,13 +100,13 @@ public class AFarmKConfig {
         public int posY = -1;
     }
 
-    @Mod.EventBusSubscriber(modid = Values.ModID)
+    @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
     private static class Handler {
 
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-            if (event.getModID().equals(Values.ModID)) {
-                ConfigManager.sync(Values.ModID, Config.Type.INSTANCE);
+            if (event.getModID().equals(Constants.MOD_ID)) {
+                ConfigManager.sync(Constants.MOD_ID, Config.Type.INSTANCE);
             }
         }
     }

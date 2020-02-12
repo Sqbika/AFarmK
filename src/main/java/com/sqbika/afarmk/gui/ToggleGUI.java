@@ -1,6 +1,6 @@
-package com.sqbika.afarmk.GUI;
+package com.sqbika.afarmk.gui;
 
-import com.sqbika.afarmk.Togglers.AFarmKConfig;
+import com.sqbika.afarmk.toggle.AFarmKConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

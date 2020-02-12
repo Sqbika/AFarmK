@@ -1,8 +1,7 @@
 package com.sqbika.afarmk;
 
-import com.sqbika.afarmk.Togglers.AFarmKConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
+import com.sqbika.afarmk.toggle.AFarmKConfig;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -13,23 +12,9 @@ import org.lwjgl.input.Keyboard;
 @SideOnly(Side.CLIENT)
 public class Keybindings {
 
-    public static KeyBinding[] keys;
-
     public static KeyBinding[] specials;
 
     public static void init() {
-
-        //Toggleable keys
-        keys = new KeyBinding[]{
-                createKeyBind("toggle.shift", Keyboard.KEY_NUMPAD1),
-                createKeyBind("toggle.leftClick", Keyboard.KEY_NUMPAD2), //Left Click
-                createKeyBind("toggle.rightClick", Keyboard.KEY_NUMPAD3),
-                createKeyBind("toggle.forward", Keyboard.KEY_NUMPAD8),
-                createKeyBind("toggle.backwards", Keyboard.KEY_NUMPAD5),
-                createKeyBind("toggle.left", Keyboard.KEY_NUMPAD4),
-                createKeyBind("toggle.right", Keyboard.KEY_NUMPAD6),
-                createKeyBind("toggle.jump", Keyboard.KEY_NUMPAD0),
-        };
 
         //Special Keys
         specials = new KeyBinding[]{
@@ -45,9 +30,10 @@ public class Keybindings {
                 createProfileKeyBind(9, Keyboard.KEY_NUMPAD9),
         };
 
-        for (KeyBinding key : keys) {
-            if(AFarmKConfig.enableIndividual)
-                ClientRegistry.registerKeyBinding(key);
+        if (AFarmKConfig.enableIndividual) {
+            for (BUTTON_TOGGLES key : BUTTON_TOGGLES.values()) {
+                    ClientRegistry.registerKeyBinding(key.getKeybinding());
+            }
         }
         for (KeyBinding key : specials) {
             if (key == null) return;
@@ -69,14 +55,6 @@ public class Keybindings {
             return key;
         } else
             return null;
-    }
-
-    public static KeyBinding find(int keybind) {
-        for (KeyBinding key : keys) {
-            if (key.getKeyCode() == keybind)
-                return key;
-        }
-        return null;
     }
 
     public static KeyBinding findSpecial(int keybind) {

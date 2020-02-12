@@ -1,6 +1,6 @@
 package com.sqbika.afarmk;
 
-import com.sqbika.afarmk.GUI.ToggleGUI;
+import com.sqbika.afarmk.gui.ToggleGUI;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
