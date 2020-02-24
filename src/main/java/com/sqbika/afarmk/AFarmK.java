@@ -1,22 +1,24 @@
 package com.sqbika.afarmk;
 
 import com.sqbika.afarmk.common.Constants;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
+import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import org.lwjgl.glfw.GLFW;
 
-@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, version = Constants.MOD_VERSION)
-public class AFarmK {
+public class AFarmK implements ClientModInitializer {
 
-    @Mod.Instance
-    public static AFarmK instance;
-
-    @SidedProxy(clientSide = Constants.CLIENT_PROXY, serverSide = Constants.COMMON_PROXY)
-    public static CommonProxy proxy;
-
-    @Mod.EventHandler
-    public static void preInit(FMLPreInitializationEvent event)
-    {
-        proxy.preInit(event);
+    @Override
+    public void onInitializeClient() {
+        KeyBindingRegistry.INSTANCE.addCategory(Constants.TOGGLER_CATEGORY);
+        FabricKeyBinding.Builder.create(new Identifier("afarmk", "toggler_left"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_1, Constants.TOGGLER_CATEGORY);
+        for (BUTTON_TOGGLES buttonToggle : BUTTON_TOGGLES.values()) {
+            KeyBindingRegistry.INSTANCE.register(buttonToggle.getKeybinding());
+        }
     }
 }

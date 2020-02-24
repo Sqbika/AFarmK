@@ -1,14 +1,16 @@
-# AFarmK
-Keybind Toggler for Minecraft 1.12.2
+# Fabric Example Mod
 
-Are you tired of holding \<Button\> and \<Another Button\>? Then this mod is for you. Maybe.
+## Setup
 
-Mod uses keypad buttons for default, but you can change it in controls
+1. Edit build.gradle and mod.json to suit your needs.
+    * The "mixins" object can be removed from mod.json if you do not need to use mixins.
+    * Please replace all occurences of "modid" with your own mod ID - sometimes, a different string may also suffice.
+2. Run the following command:
 
-# This is a client-side only mod. Putting it on server won't make your server die, but it'll just sit there and exist.
+```
+./gradlew idea
+```
 
-If you want me to add another button, just do an Issue, or better, a PR :D
+## License
 
-#TODO:
-
-*  Use config file for buttons, so it's not hardcoded which button you use
+This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.

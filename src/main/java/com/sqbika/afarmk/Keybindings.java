@@ -1,18 +1,11 @@
 package com.sqbika.afarmk;
 
 import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
-import com.sqbika.afarmk.toggle.AFarmKConfig;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraftforge.client.settings.KeyModifier;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
+import com.sqbika.afarmk.common.config.AFarmKConfig;
 
-@SideOnly(Side.CLIENT)
 public class Keybindings {
 
-    public static KeyBinding[] specials;
+    /*public static KeyBinding[] specials;
 
     public static void init() {
 
@@ -62,7 +55,7 @@ public class Keybindings {
             if (key.getKeyCode() == keybind) {
                 return key;
             }
-        } 
+        }
         return null;
-    }
+    }*/
 }

@@ -1,22 +1,8 @@
 package com.sqbika.afarmk;
 
-import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
-import com.sqbika.afarmk.toggle.AFarmKConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
-import org.lwjgl.input.Keyboard;
-
-import java.util.*;
-
-import static java.util.Objects.isNull;
-
 public class KeyEventHandler {
 
-    @SubscribeEvent
+   /* @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
         if (!Minecraft.getMinecraft().inGameHasFocus) return;
         GameSettings settings = FMLClientHandler.instance().getClient().gameSettings;
@@ -66,5 +52,5 @@ public class KeyEventHandler {
             }
             profile.on = !profile.on;
         }
-    }
+    }*/
 }
