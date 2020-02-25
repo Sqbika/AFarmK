@@ -1,6 +1,8 @@
 package com.sqbika.afarmk;
 
 import com.sqbika.afarmk.common.Constants;
+import com.sqbika.afarmk.common.config.AFarmKConfig;
+import com.sqbika.afarmk.common.config.ConfigHandler;
 import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
@@ -15,8 +17,8 @@ public class AFarmK implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        AFarmKConfig config = ConfigHandler.readConfig();
         KeyBindingRegistry.INSTANCE.addCategory(Constants.TOGGLER_CATEGORY);
-        FabricKeyBinding.Builder.create(new Identifier("afarmk", "toggler_left"), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_KP_1, Constants.TOGGLER_CATEGORY);
         for (BUTTON_TOGGLES buttonToggle : BUTTON_TOGGLES.values()) {
             KeyBindingRegistry.INSTANCE.register(buttonToggle.getKeybinding());
         }

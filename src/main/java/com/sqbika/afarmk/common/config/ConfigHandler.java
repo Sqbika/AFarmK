@@ -1,6 +1,7 @@
 package com.sqbika.afarmk.common.config;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.sqbika.afarmk.LogHelper;
 import com.sqbika.afarmk.common.Constants;
@@ -15,7 +16,7 @@ public class ConfigHandler {
 
     private static Gson getGson() {
         if (Objects.isNull(gson)) {
-            gson = new Gson();
+            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         }
         return gson;
     }
