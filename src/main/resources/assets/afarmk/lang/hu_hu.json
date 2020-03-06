@@ -1,12 +1,13 @@
 {
   "afarmk.toggles": "AFarmK - Mozgás Kapcsolók",
-  "toggle.shift": "Shift Átkapolácsa",
-  "toggle.leftClick": "Bal Egérgomb Átkapolácsa",
-  "toggle.rightClick": "Jobb Egérgomb Átkapolácsa",
-  "toggle.forward": "Előre Átkapolácsa",
-  "toggle.backwards": "Hátra Átkapolácsa",
-  "toggle.left": "Balra Átkapolácsa",
-  "toggle.right": "Jobbra Átkapolácsa",
-  "toggle.jump": "Ugrás Átkapolácsa",
-  "toggle.reset": "Kapcsolók alaphelyzetbehozása"
+  "key.afarmk.toggle.shift": "Shift Átkapcsolása",
+  "key.afarmk.toggle.leftclick": "Bal Egérgomb Átkapcsolása",
+  "key.afarmk.toggle.rightclick": "Jobb Egérgomb Átkapcsolása",
+  "key.afarmk.toggle.forward": "Előre Átkapcsolása",
+  "key.afarmk.toggle.backward": "Hátra Átkapcsolása",
+  "key.afarmk.toggle.left": "Balra Átkapcsolása",
+  "key.afarmk.toggle.right": "Jobbra Átkapcsolása",
+  "key.afarmk.toggle.jump": "Ugrás Átkapcsolása",
+  "key.afarmk.toggle.reset": "Kapcsolók alaphelyzetbe hozása",
+  "afarmk.profiles": "AFarmK - Profil Kapcsolók"
 }

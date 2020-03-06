@@ -3,7 +3,8 @@
   "package": "com.sqbika.afarmk.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "KeyBindingMixin"
+    "KeyBindingMixin",
+    "I18nMixin"
   ],
   "injectors": {
     "defaultRequire": 1
