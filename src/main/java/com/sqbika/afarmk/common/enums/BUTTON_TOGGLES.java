@@ -1,20 +1,21 @@
 package com.sqbika.afarmk.common.enums;
 
 import com.sqbika.afarmk.common.Constants;
+import com.sqbika.afarmk.common.StaticUtil;
 import com.sqbika.afarmk.common.interfaces.GetKeyBindFromGameSettings;
-import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
+import net.minecraft.client.util.InputMappings;
 
 public enum BUTTON_TOGGLES {
-    SHIFT("toggle.shift", Keyboard.KEY_NUMPAD1, settings -> settings.keyBindSneak),
-    LEFT_CLICK("toggle.leftClick", Keyboard.KEY_NUMPAD2, settings -> settings.keyBindAttack),
-    RIGHT_CLICK("toggle.rightClick", Keyboard.KEY_NUMPAD3, settings -> settings.keyBindUseItem),
-    FORWARD("toggle.forward", Keyboard.KEY_NUMPAD8, settings -> settings.keyBindForward),
-    BACKWARD("toggle.backward", Keyboard.KEY_NUMPAD5, settings -> settings.keyBindBack),
-    LEFT("toggle.left", Keyboard.KEY_NUMPAD5, settings -> settings.keyBindLeft),
-    RIGHT("toggle.right", Keyboard.KEY_NUMPAD6, settings -> settings.keyBindRight),
-    JUMP("toggle.jump", Keyboard.KEY_NUMPAD0, settings -> settings.keyBindJump)
+    SHIFT("key.afarmk.toggle.shift", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 1), settings -> settings.field_228046_af_),
+    LEFT_CLICK("key.afarmk.toggle.leftclick", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 2), settings -> settings.keyBindAttack),
+    RIGHT_CLICK("key.afarmk.toggle.rightclick", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 3), settings -> settings.keyBindUseItem),
+    FORWARD("key.afarmk.toggle.forward", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 8), settings -> settings.keyBindForward),
+    BACKWARD("key.afarmk.toggle.backward", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 5), settings -> settings.keyBindBack),
+    LEFT("key.afarmk.toggle.left", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 4), settings -> settings.keyBindLeft),
+    RIGHT("key.afarmk.toggle.right", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 6), settings -> settings.keyBindRight),
+    JUMP("key.afarmk.toggle.jump", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 0), settings -> settings.keyBindJump)
     ;
 
     private String trKey;
@@ -22,11 +23,11 @@ public enum BUTTON_TOGGLES {
     private GetKeyBindFromGameSettings gkbfs;
     private KeyBinding keyBinding;
 
-    BUTTON_TOGGLES(String trKey, int kbButton, GetKeyBindFromGameSettings gkbfs) {
-        this.trKey = trKey;
-        this.kbButton = kbButton;
+    BUTTON_TOGGLES(String keybindId, int buttonKey, GetKeyBindFromGameSettings gkbfs) {
+        this.trKey = keybindId;
+        this.kbButton = buttonKey;
         this.gkbfs = gkbfs;
-        this.keyBinding = new KeyBinding(trKey, kbButton, Constants.TOGGLER_CATEGORY);
+        this.keyBinding = new KeyBinding(keybindId, InputMappings.Type.KEYSYM, buttonKey, Constants.TOGGLER_CATEGORY);
     }
 
     public String getTrKey() {
@@ -46,7 +47,7 @@ public enum BUTTON_TOGGLES {
 
     public static BUTTON_TOGGLES findByKeyBind(int eventKey) {
         for (BUTTON_TOGGLES bt: values()) {
-            if (bt.keyBinding.getKeyCode() == eventKey)
+            if (bt.keyBinding.matchesKey(InputMappings.Type.KEYSYM.ordinal(), eventKey))
                 return bt;
         }
         return null;

@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+issueTrackerURL="https://github.com/Sqbika/AFarmK/issues"
+[[mods]]
+modId="afarmk"
+version="${file.jarVersion}"
+displayName="AFarmK"
+#updateJSONURL="http://myurl.me/"
+#displayURL="http://example.com/"
+logoFile="afarmk.png"
+authors="Sqbika"
+description='''
+If you are tired of holding a keybind, I'm here to help.
+'''

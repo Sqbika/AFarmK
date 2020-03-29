@@ -1,0 +1,13 @@
+{
+  "afarmk.toggles": "AFarmK - Movement Toggles",
+  "key.afarmk.toggle.shift": "Toggle Shift",
+  "key.afarmk.toggle.leftclick": "Toggle LeftClick",
+  "key.afarmk.toggle.rightclick": "Toggle RightClick",
+  "key.afarmk.toggle.forward": "Toggle Forward",
+  "key.afarmk.toggle.backward": "Toggle Backwards",
+  "key.afarmk.toggle.left": "Toggle Left",
+  "key.afarmk.toggle.right": "Toggle Right",
+  "key.afarmk.toggle.jump": "Toggle Jump",
+  "key.afarmk.toggle.reset": "Reset Toggles",
+  "afarmk.profiles": "AFarmK - Profile Keybinds"
+}

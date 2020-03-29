@@ -1,22 +1,41 @@
 package com.sqbika.afarmk;
 
 import com.sqbika.afarmk.common.Constants;
+import com.sqbika.afarmk.common.config.AFarmKConfig;
+import com.sqbika.afarmk.common.config.ConfigHandler;
+import com.sqbika.afarmk.common.config.TogglerProfile;
+import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.InputMappings;
+import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, version = Constants.MOD_VERSION)
-public class AFarmK {
+import java.util.Objects;
 
-    @Mod.Instance
-    public static AFarmK instance;
+@Mod(Constants.MOD_ID)
+public final class AFarmK {
 
-    @SidedProxy(clientSide = Constants.CLIENT_PROXY, serverSide = Constants.COMMON_PROXY)
-    public static CommonProxy proxy;
+    public static AFarmKConfig config;
 
-    @Mod.EventHandler
-    public static void preInit(FMLPreInitializationEvent event)
-    {
-        proxy.preInit(event);
+    public AFarmK() {
+        AFarmKConfig config = ConfigHandler.readConfig();
+        AFarmK.config = config;
+
+        for (BUTTON_TOGGLES buttonToggle : BUTTON_TOGGLES.values()) {
+            ClientRegistry.registerKeyBinding(buttonToggle.getKeybinding());
+        }
+        if (Objects.nonNull(config) && Objects.nonNull(config.profiles)) {
+            for (TogglerProfile profile : config.profiles) {
+                if (profile.buttons.length != 0 && profile.profileKeybind != 0) {
+                    KeyBinding keybind = new KeyBinding(profile.name, profile.profileKeybind, Constants.PROFILE_CATEGORY);
+                    profile.setKeyBinding(keybind);
+                    ClientRegistry.registerKeyBinding(keybind);
+                }
+            }
+        }
     }
 }
