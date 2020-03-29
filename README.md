@@ -1,5 +1,5 @@
 # AFarmK
-Keybind Toggler for Minecraft 1.12.2
+Keybind Toggler for Forge Minecraft 1.15.2
 
 Are you tired of holding \<Button\> and \<Another Button\>? Then this mod is for you. Maybe.
 
@@ -9,6 +9,23 @@ Mod uses keypad buttons for default, but you can change it in controls
 
 If you want me to add another button, just do an Issue, or better, a PR :D
 
-#TODO:
+## Config file
 
-*  Use config file for buttons, so it's not hardcoded which button you use
+Config has been reworked into a more dynamic, less restrictive format.
+
+New example config:
+
+```json
+{
+    "enableIndividual": true,
+    "profiles": [
+        {
+            "name": "Sajt",
+            "buttons": [
+              "SHIFT", "LEFT_CLICK", "RIGHT_CLICK", "FORWARD", "BACKWARD", "LEFT", "RIGHT", "JUMP"
+            ],
+            "profileKeybind": 36
+        }
+    ]
+}
+```
