@@ -3,11 +3,14 @@ package com.sqbika.afarmk.common.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import com.sqbika.afarmk.AFarmK;
 import com.sqbika.afarmk.LogHelper;
 import com.sqbika.afarmk.common.Constants;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.Objects;
 
 public class ConfigHandler {
@@ -16,7 +19,7 @@ public class ConfigHandler {
 
     private static Gson getGson() {
         if (Objects.isNull(gson)) {
-            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         }
         return gson;
     }
@@ -29,9 +32,19 @@ public class ConfigHandler {
         File configFile = getConfigFile();
         if (configFile.exists() && configFile.isFile()) {
             try {
-                return getGson().fromJson(new JsonReader(new FileReader(configFile)), AFarmKConfig.class);
+                AFarmKConfig config = getGson().fromJson(new JsonReader(new FileReader(configFile)), AFarmKConfig.class);
+                if (config == null) {
+                    //TODO: Remove after fixing empty config issue.
+                    AFarmKConfig newConfig = new AFarmKConfig();
+                    createConfigFile(newConfig);
+                    LogHelper.warn("Empty or invalid AFarmK config found. Overriding.");
+                    return newConfig;
+                }
+                return config;
             } catch (FileNotFoundException e) {
                 LogHelper.fatal("Failed to load the config file! Skipping config loading.", e);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         } else {
             try {
@@ -48,6 +61,7 @@ public class ConfigHandler {
 
     public static void createConfigFile(AFarmKConfig config) throws IOException {
         FileWriter fileWriter = new FileWriter(getConfigFile());
-        getGson().toJson(getGson().toJsonTree(config, AFarmKConfig.class), fileWriter);
+        fileWriter.write(getGson().toJson(config, AFarmKConfig.class));
+        fileWriter.close();
     }
 }

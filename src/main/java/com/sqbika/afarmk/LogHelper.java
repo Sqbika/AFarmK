@@ -17,7 +17,7 @@ public class LogHelper {
     }
 
     public static void log(Level level, String format, Object... data){
-        getLogger().log(level, String.format(format, data));
+        getLogger().log(level, String.format("[AFarmK] " + format, data));
     }
 
     public static void warn(Object stuff, Object... data) {
