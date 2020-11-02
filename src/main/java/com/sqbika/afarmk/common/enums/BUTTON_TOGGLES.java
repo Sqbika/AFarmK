@@ -8,7 +8,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
 
 public enum BUTTON_TOGGLES {
-    SHIFT("key.afarmk.toggle.shift", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 1), settings -> settings.field_228046_af_),
+    SHIFT("key.afarmk.toggle.shift", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 1), settings -> settings.keyBindSneak),
     LEFT_CLICK("key.afarmk.toggle.leftclick", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 2), settings -> settings.keyBindAttack),
     RIGHT_CLICK("key.afarmk.toggle.rightclick", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 3), settings -> settings.keyBindUseItem),
     FORWARD("key.afarmk.toggle.forward", StaticUtil.getKeyCode(Constants.NUMPAD_PREFIX + 8), settings -> settings.keyBindForward),

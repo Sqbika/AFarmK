@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[34,)"
 issueTrackerURL="https://github.com/Sqbika/AFarmK/issues"
+license="GNU General Public License v3.0"
+
 [[mods]]
 modId="afarmk"
 version="${file.jarVersion}"
 displayName="AFarmK"
-#updateJSONURL="http://myurl.me/"
-#displayURL="http://example.com/"
 logoFile="afarmk.png"
 authors="Sqbika"
 description='''
