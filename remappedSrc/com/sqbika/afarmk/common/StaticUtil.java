@@ -5,7 +5,7 @@ import net.minecraft.client.util.InputUtil;
 public class StaticUtil {
 
     public static int getKeyCode(String keyPrefix) {
-        InputUtil.Key keybind = InputUtil.fromTranslationKey(keyPrefix);
-        return keybind.getCode();
+        InputUtil.KeyCode keybind = InputUtil.fromName(keyPrefix);
+        return keybind.getKeyCode();
     }
 }

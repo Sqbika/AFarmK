@@ -18,15 +18,15 @@ import java.util.Objects;
 public class KeyBindingMixin {
 
     @Inject(at = @At("RETURN"), method = "onKeyPressed")
-    private static void onKeyPressed(InputUtil.Key keyCode, CallbackInfo info) {
+    private static void onKeyPressed(InputUtil.KeyCode keyCode, CallbackInfo info) {
         for (BUTTON_TOGGLES toggle : BUTTON_TOGGLES.values()) {
-            if (toggle.getKeybinding().matchesKey(keyCode.getCode(), 0)) {
+            if (toggle.getKeybinding().matchesKey(keyCode.getKeyCode(), 0)) {
                 KeyBinding bind = toggle.getToggleKeybind(MinecraftClient.getInstance().options);
                 bind.setPressed(!bind.isPressed());
             }
         }
         for (TogglerProfile profile : AFarmK.config.profiles) {
-            if (profile.buttons.length != 0 && profile.keyBinding.matchesKey(keyCode.getCode(), 0)) {
+            if (profile.buttons.length != 0 && profile.keyBinding.matchesKey(keyCode.getKeyCode(), 0)) {
                 for (String code : profile.buttons) {
                     try {
                         BUTTON_TOGGLES toggle = BUTTON_TOGGLES.valueOf(code);

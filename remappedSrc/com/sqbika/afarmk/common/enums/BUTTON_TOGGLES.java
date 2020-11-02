@@ -23,13 +23,13 @@ public enum BUTTON_TOGGLES {
     private String trKey;
     private int kbButton;
     private GetKeyBindFromGameSettings gkbfs;
-    private KeyBinding keyBinding;
+    private FabricKeyBinding keyBinding;
 
     BUTTON_TOGGLES(String keybindId, int buttonKey, GetKeyBindFromGameSettings gkbfs) {
         this.trKey = keybindId;
         this.kbButton = buttonKey;
         this.gkbfs = gkbfs;
-        this.keyBinding = new KeyBinding(Constants.KEY_PREFIX + "." + keybindId, InputUtil.Type.KEYSYM, buttonKey, Constants.TOGGLER_CATEGORY);
+        this.keyBinding = FabricKeyBinding.Builder.create(new Identifier(Constants.MOD_ID, keybindId), InputUtil.Type.KEYSYM,buttonKey, Constants.TOGGLER_CATEGORY).build();
     }
 
     public String getTrKey() {
@@ -49,7 +49,7 @@ public enum BUTTON_TOGGLES {
 
     public static BUTTON_TOGGLES findByKeyBind(int eventKey) {
         for (BUTTON_TOGGLES bt: values()) {
-            if (bt.keyBinding.matchesKey(InputUtil.Type.KEYSYM.ordinal(), eventKey))
+            if (bt.keyBinding.getDefaultKeyCode().getKeyCode() == eventKey)
                 return bt;
         }
         return null;
@@ -63,7 +63,7 @@ public enum BUTTON_TOGGLES {
         return kbButton;
     }
 
-    public KeyBinding getKeybinding() {
+    public FabricKeyBinding getKeybinding() {
         return keyBinding;
     }
 }

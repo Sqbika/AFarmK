@@ -13,7 +13,6 @@ public class Constants {
     public static final String PROFILE_CATEGORY = "afarmk.profiles";
 
     public static final String NUMPAD_PREFIX = "key.keyboard.keypad.";
-    public static final String KEY_PREFIX = "key." + MOD_ID;
 
     public static final String CONFIG_PATH = String.format("%s.json", MOD_ID);
 
