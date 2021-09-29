@@ -5,7 +5,7 @@ import com.sqbika.afarmk.LogHelper;
 import com.sqbika.afarmk.common.config.TogglerProfile;
 import com.sqbika.afarmk.common.enums.BUTTON_TOGGLES;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

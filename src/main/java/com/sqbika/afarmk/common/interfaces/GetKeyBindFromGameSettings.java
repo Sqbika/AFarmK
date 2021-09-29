@@ -1,8 +1,8 @@
 package com.sqbika.afarmk.common.interfaces;
 
 
-import net.minecraft.client.options.GameOptions;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.KeyBinding;
 
 @FunctionalInterface
 public interface GetKeyBindFromGameSettings {

@@ -10,7 +10,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -26,6 +26,9 @@ public class AFarmK implements ClientModInitializer {
     public void onInitializeClient() {
         AFarmKConfig config = ConfigHandler.readConfig();
         AFarmK.config = config;
+
+        BUTTON_TOGGLES.registerKeybinds();
+
         if (Objects.nonNull(config) && Objects.nonNull(config.profiles)) {
             for (TogglerProfile profile : config.profiles) {
                 if (profile.buttons.length != 0 && profile.profileKeybind != 0) {

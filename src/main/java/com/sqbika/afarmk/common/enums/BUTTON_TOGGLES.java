@@ -4,8 +4,9 @@ import com.sqbika.afarmk.common.Constants;
 import com.sqbika.afarmk.common.StaticUtil;
 import com.sqbika.afarmk.common.interfaces.GetKeyBindFromGameSettings;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
-import net.minecraft.client.options.GameOptions;
-import net.minecraft.client.options.KeyBinding;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 
@@ -65,5 +66,11 @@ public enum BUTTON_TOGGLES {
 
     public KeyBinding getKeybinding() {
         return keyBinding;
+    }
+
+    public static void registerKeybinds() {
+        for (BUTTON_TOGGLES value : values()) {
+            KeyBindingHelper.registerKeyBinding(value.keyBinding);
+        }
     }
 }

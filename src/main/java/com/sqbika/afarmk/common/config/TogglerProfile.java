@@ -1,7 +1,7 @@
 package com.sqbika.afarmk.common.config;
 
 import com.google.gson.annotations.Expose;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 
 public class TogglerProfile {
 
