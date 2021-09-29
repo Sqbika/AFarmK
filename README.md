@@ -1,5 +1,5 @@
 # AFarmK
-Keybind Toggler for Fabric Minecraft 1.16.3
+Keybind Toggler for Fabric Minecraft 1.17.1
 
 Are you tired of holding \<Button\> and \<Another Button\>? Then this mod is for you. Maybe.
 
@@ -24,7 +24,7 @@ New example config:
             "buttons": [
               "SHIFT", "LEFT_CLICK", "RIGHT_CLICK", "FORWARD", "BACKWARD", "LEFT", "RIGHT", "JUMP"
             ],
-            "profileKeybind": 
+            "profileKeybind":  []
         }
     ]
 }
